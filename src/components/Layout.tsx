@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Glasses, Calendar, PenSquare, LogOut } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Glasses, Calendar, PenSquare, LogOut } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { logout } = useAuth();
@@ -10,7 +10,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -29,24 +29,26 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <Link
                   to="/"
                   className={`${
-                    location.pathname === '/'
-                      ? 'border-blue-500 text-gray-900'
-                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    location.pathname === "/"
+                      ? "border-blue-500 text-gray-900"
+                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                 >
                   <Calendar className="h-5 w-5 mr-1" />
                   Appointments
                 </Link>
+              </div>
+              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <Link
-                  to="/blog"
+                  to="/blog-post"
                   className={`${
-                    location.pathname === '/blog'
-                      ? 'border-blue-500 text-gray-900'
-                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    location.pathname === "/blog-post"
+                      ? "border-blue-500 text-gray-900"
+                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                 >
-                  <PenSquare className="h-5 w-5 mr-1" />
-                  Blog Post
+                  <Calendar className="h-5 w-5 mr-1" />
+                  Blog-Post
                 </Link>
               </div>
             </div>
@@ -63,9 +65,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        {children}
-      </main>
+      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">{children}</main>
     </div>
   );
 };

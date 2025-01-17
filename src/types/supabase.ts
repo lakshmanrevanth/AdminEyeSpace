@@ -13,8 +13,7 @@ export interface Database {
           service_price: number;
           appointment_datetime: string;
           message: string | null;
-          status: "completed" | "pending" | "confirmed";
-          payment_status: "paid" | "unpaid";
+          
         };
         Insert: Omit<
           Database["public"]["Tables"]["appointments"]["Row"],

@@ -21,7 +21,7 @@ const EditAppointmentModal: React.FC<EditAppointmentModalProps> = ({
 
   // Predefined options for duration and price
   const durations = ["30 minutes", "1 hour", "2 hours"];
-  const prices = ["$50", "$100", "$150"];
+  const prices = ["50 Rs", "100 Rs", "150 Rs"];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
