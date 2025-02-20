@@ -10,7 +10,8 @@ import Layout from "./components/Layout";
 import LoginForm from "./components/LoginForm";
 import AppointmentList from "./components/AppointmentList";
 import BlogPostForm from "./components/blog_post";
-// import { BlogPostForm } from "./components/components_BlogPostForm";
+import CustomerReviews from "./components/reviewList";
+import EmailSubscriptions from "./components/emailList";
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -28,6 +29,28 @@ const AppRoutes: React.FC = () => {
         path="/login"
         element={isAuthenticated ? <Navigate to="/" /> : <LoginForm />}
       />
+      <Route
+        path="/email-Subscriptions"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <EmailSubscriptions />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/customer-reviews"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <CustomerReviews />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="/blog-post"
         element={

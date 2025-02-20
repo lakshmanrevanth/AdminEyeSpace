@@ -26,9 +26,6 @@ const AppointmentRow: React.FC<AppointmentRowProps> = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
-  const [appointmentToDelete, setAppointmentToDelete] = useState<string | null>(
-    null
-  );
 
   const getStatusColor = (status: string | undefined) => {
     switch (status?.toLowerCase()) {
@@ -74,37 +71,6 @@ const AppointmentRow: React.FC<AppointmentRowProps> = ({
   const handleEditClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onEdit();
-  };
-
-  const handleDeleteClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setAppointmentToDelete(appointment.id);
-    setShowModal(true);
-  };
-
-  const confirmDelete = async () => {
-    if (!appointmentToDelete) return;
-
-    try {
-      const { data, error } = await supabase
-        .from("appointments")
-        .delete()
-        .eq("id", appointmentToDelete);
-
-      if (error) {
-        throw error;
-      }
-      onDelete(appointmentToDelete);
-      setShowModal(false);
-    } catch (error) {
-      console.error("Error deleting appointment:", error);
-      alert("Error deleting appointment.");
-      setShowModal(false);
-    }
-  };
-
-  const cancelDelete = () => {
-    setShowModal(false);
   };
 
   const AppointmentDetailsModal = () => (
@@ -296,41 +262,9 @@ const AppointmentRow: React.FC<AppointmentRowProps> = ({
             >
               <Edit className="w-5 h-5 text-gray-600" />
             </button>
-            <button
-              onClick={handleDeleteClick}
-              className="p-1 hover:bg-gray-100 rounded-full"
-              aria-label="Delete Appointment"
-            >
-              <Trash2 className="w-5 h-5 text-red-600" />
-            </button>
           </div>
         </td>
       </tr>
-
-      {/* Confirmation Modal for Delete */}
-      {showModal && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-            <h3 className="text-lg font-semibold mb-4">
-              Are you sure you want to delete this appointment?
-            </h3>
-            <div className="flex justify-end gap-4">
-              <button
-                onClick={cancelDelete}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="px-4 py-2 bg-red-600 text-white rounded-md"
-              >
-                Confirm Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Detailed Appointment Modal */}
       {showDetailsModal && <AppointmentDetailsModal />}

@@ -21,3 +21,5 @@ const updateAppointment = async (updatedAppointment: Appointment) => {
   console.log("Updated appointment:", data);
   return true;
 };
+
+export { createClient };

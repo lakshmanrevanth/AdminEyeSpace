@@ -6,10 +6,8 @@ const BlogPostForm: React.FC = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [headings, setHeadings] = useState([{ id: 1, text: "Steps" }]);
-  const [subheadings, setSubheadings] = useState([
-    { id: 2, text: "Conclusion" },
-  ]);
+  const [headings, setHeadings] = useState([{ id: 1, text: "" }]);
+  const [subheadings, setSubheadings] = useState([{ id: 2, text: "" }]);
   const [images, setImages] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
