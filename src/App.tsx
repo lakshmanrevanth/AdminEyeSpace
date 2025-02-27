@@ -70,7 +70,7 @@ const AppRoutes: React.FC = () => {
             </Layout>
           </ProtectedRoute>
         }
-      />
+      />3
     </Routes>
   );
 };
